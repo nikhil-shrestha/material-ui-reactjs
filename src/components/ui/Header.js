@@ -52,6 +52,18 @@ const useStyles = makeStyles(theme => ({
     marginLeft: 50,
     marginRight: 25,
     height: 38
+  },
+  menu: {
+    background: theme.palette.common.blue,
+    color: 'white',
+    borderRadius: 0
+  },
+  menuItem: {
+    ...theme.typography.tab,
+    opacity: 0.7,
+    '&:hover': {
+      opacity: 1
+    }
   }
 }));
 
@@ -158,7 +170,11 @@ function Header(props) {
               anchorEl={anchorEl}
               open={open}
               onClose={handleClose}
+              classes={{
+                paper: classes.menu
+              }}
               MenuListProps={{ onMouseLeave: handleClose }}
+              elevation={0}
             >
               <MenuItem
                 onClick={() => {
@@ -167,6 +183,9 @@ function Header(props) {
                 }}
                 component={Link}
                 to="/services"
+                classes={{
+                  root: classes.menuItem
+                }}
               >
                 Services
               </MenuItem>
@@ -177,6 +196,9 @@ function Header(props) {
                 }}
                 component={Link}
                 to="/custom-software"
+                classes={{
+                  root: classes.menuItem
+                }}
               >
                 Custom Software Development
               </MenuItem>
@@ -187,6 +209,9 @@ function Header(props) {
                 }}
                 component={Link}
                 to="/mobile-apps"
+                classes={{
+                  root: classes.menuItem
+                }}
               >
                 Mobile App Development
               </MenuItem>
@@ -197,6 +222,9 @@ function Header(props) {
                 }}
                 component={Link}
                 to="/websites"
+                classes={{
+                  root: classes.menuItem
+                }}
               >
                 Website Development
               </MenuItem>
