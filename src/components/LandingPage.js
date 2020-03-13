@@ -8,13 +8,15 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 
-import ButtonArrow from './ui/ButtonArrow';
 import animationData from '../animations/landinganimation/data';
 import customSoftwareIcon from '../assets/Custom Software Icon.svg';
 import mobileAppIcon from '../assets/mobileIcon.svg';
 import websitesIcon from '../assets/websiteIcon.svg';
 import revolutionBackground from '../assets/repeatingBackground.svg';
 import infoBackground from '../assets/infoBackground.svg';
+
+import ButtonArrow from './ui/ButtonArrow';
+import CallToAction from './ui/CallToAction';
 
 const useStyles = makeStyles(theme => ({
   animation: {
@@ -401,6 +403,10 @@ const LandingPage = () => {
 
           <div className={classes.infoBackground} />
         </Grid>
+      </Grid>
+      <Grid item>
+        {/*----- Call To Action -----*/}
+        <CallToAction />
       </Grid>
     </Grid>
   );
