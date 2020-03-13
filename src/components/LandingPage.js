@@ -9,6 +9,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import ButtonArrow from './ui/ButtonArrow';
 import animationData from '../animations/landinganimation/data';
 import customSoftwareIcon from '../assets/Custom Software Icon.svg';
+import mobileAppIcon from '../assets/mobileIcon.svg';
 
 const useStyles = makeStyles(theme => ({
   animation: {
@@ -102,8 +103,8 @@ const LandingPage = () => {
 
   return (
     <Grid container direction="column" className={classes.mainContainer}>
+      {/*----- Hero Block -----*/}
       <Grid item>
-        {/*----- Hero Block -----*/}
         <Grid container justify="flex-end" alignItems="center">
           <Grid item sm className={classes.heroTextContainer}>
             <Typography variant="h2" align="center">
@@ -136,8 +137,9 @@ const LandingPage = () => {
           </Grid>
         </Grid>
       </Grid>
+      {/*----- Services -----*/}
       <Grid item>
-        {/*----- Services -----*/}
+        {/*----- Custom Software -----*/}
         <Grid
           container
           justify={matchesSM ? 'center' : undefined}
@@ -171,6 +173,45 @@ const LandingPage = () => {
             <img
               src={customSoftwareIcon}
               alt="custom software icon"
+              className={classes.icon}
+            />
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid item>
+        {/*----- iOS/Android Block -----*/}
+        <Grid
+          container
+          justify={matchesSM ? 'center' : 'flex-end'}
+          className={classes.serviceContainer}
+        >
+          <Grid
+            item
+            style={{
+              textAlign: matchesSM ? 'center' : undefined
+            }}
+          >
+            <Typography variant="h4">iOS/Android App Development</Typography>
+            <Typography variant="subtitle1" className={classes.subtitle}>
+              Extend Functionality. Extend Access. Increase Engagement
+            </Typography>
+            <Typography variant="subtitle1">
+              Integrate your web experience or create a standalone
+              {matchesSM ? null : <br />} with either mobile platform
+            </Typography>
+            <Button variant="outlined" className={classes.learnButton}>
+              <span style={{ marginRight: 10 }}>Learn More</span>
+              <ButtonArrow
+                width={10}
+                height={10}
+                fill={theme.palette.common.blue}
+              />
+            </Button>
+          </Grid>
+          <Grid item style={{ marginRight: matchesSM ? 0 : '5em' }}>
+            <img
+              src={mobileAppIcon}
+              alt="mobile phone icon"
               className={classes.icon}
             />
           </Grid>
