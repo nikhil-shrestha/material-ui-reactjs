@@ -9,8 +9,21 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import backArrow from '../assets/backArrow.svg';
 import forwardArrow from '../assets/forwardArrow.svg';
+import lightBulb from '../assets/bulb.svg';
+import cash from '../assets/cash.svg';
+import stopWatch from '../assets/stopwatch.svg';
 
-const useStyles = makeStyles(theme => ({}));
+const useStyles = makeStyles(theme => ({
+  heading: {
+    maxWidth: '40em'
+  },
+  arrowContainer: {
+    marginTop: '0.5em'
+  },
+  mainContainer: {
+    padding: '2rem 5em 10em 5em'
+  }
+}));
 
 const CustomSoftware = props => {
   const classes = useStyles();
@@ -18,14 +31,26 @@ const CustomSoftware = props => {
   const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
-    <Grid container direction="column">
+    <Grid container direction="column" className={classes.mainContainer}>
       <Grid item container>
-        <Grid item>
-          <IconButton>
+        <Grid
+          item
+          className={classes.arrowContainer}
+          style={{ marginRight: '1em', marginLeft: '-3.5em' }}
+        >
+          <IconButton
+            style={{ backgroundColor: 'transparent' }}
+            component={Link}
+            to="/services"
+            onClick={() => {
+              props.setValue(1);
+              props.setSelectedIndex(0);
+            }}
+          >
             <img src={backArrow} alt="Back to Services Page" />
           </IconButton>
         </Grid>
-        <Grid item container direction="column">
+        <Grid item container direction="column" className={classes.heading}>
           <Grid item>
             <Typography variant="h2">Custom Software Development</Typography>
           </Grid>
@@ -53,13 +78,74 @@ const CustomSoftware = props => {
             </Typography>
           </Grid>
         </Grid>
-        <Grid item>
-          <IconButton>
+        <Grid item className={classes.arrowContainer}>
+          <IconButton
+            style={{ backgroundColor: 'transparent' }}
+            component={Link}
+            to="/mobile-apps"
+            onClick={() => {
+              props.setValue(1);
+              props.setSelectedIndex(2);
+            }}
+          >
             <img
               src={forwardArrow}
               alt="Forward to iOS/Andrioid App Development Page"
             />
           </IconButton>
+        </Grid>
+      </Grid>
+      <Grid
+        item
+        container
+        direction="row"
+        justify="center"
+        style={{ marginTop: '15em', marginBottom: '20em' }}
+      >
+        <Grid
+          item
+          container
+          direction="column"
+          md
+          alignItems="center"
+          style={{ maxWidth: '40em' }}
+        >
+          <Grid item>
+            <Typography variant="h4">Save Energy</Typography>
+          </Grid>
+          <Grid item>
+            <img src={lightBulb} alt="light bulb" />
+          </Grid>
+        </Grid>
+        <Grid
+          item
+          container
+          direction="column"
+          md
+          alignItems="center"
+          style={{ maxWidth: '40em' }}
+        >
+          <Grid item>
+            <Typography variant="h4">Save Time</Typography>
+          </Grid>
+          <Grid item>
+            <img src={stopWatch} alt="light bulb" />
+          </Grid>
+        </Grid>
+        <Grid
+          item
+          container
+          direction="column"
+          md
+          alignItems="center"
+          style={{ maxWidth: '40em' }}
+        >
+          <Grid item>
+            <Typography variant="h4">Save Money</Typography>
+          </Grid>
+          <Grid item>
+            <img src={cash} alt="light bulb" />
+          </Grid>
         </Grid>
       </Grid>
     </Grid>
