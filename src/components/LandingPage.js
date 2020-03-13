@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import { Link } from 'react-router-dom';
 
 import animationData from '../animations/landinganimation/data';
 import customSoftwareIcon from '../assets/Custom Software Icon.svg';
@@ -151,12 +152,22 @@ const LandingPage = () => {
               className={classes.buttonContainer}
             >
               <Grid item>
-                <Button className={classes.estimate} variant="contained">
+                <Button
+                  component={Link}
+                  to="/estimate"
+                  className={classes.estimate}
+                  variant="contained"
+                >
                   Free Esitmate
                 </Button>
               </Grid>
               <Grid item>
-                <Button variant="outlined" className={classes.learnButtonHero}>
+                <Button
+                  component={Link}
+                  to="/revolution"
+                  variant="outlined"
+                  className={classes.learnButtonHero}
+                >
                   <span style={{ marginRight: 10 }}>Learn More</span>
                   <ButtonArrow
                     width={15}
@@ -195,7 +206,12 @@ const LandingPage = () => {
               Complete digital solutions, from investigation to{' '}
               <span className={classes.specialText}>celebration.</span>
             </Typography>
-            <Button variant="outlined" className={classes.learnButton}>
+            <Button
+              component={Link}
+              to="/custom-software"
+              variant="outlined"
+              className={classes.learnButton}
+            >
               <span style={{ marginRight: 10 }}>Learn More</span>
               <ButtonArrow
                 width={10}
@@ -234,7 +250,12 @@ const LandingPage = () => {
               Integrate your web experience or create a standalone
               {matchesSM ? null : <br />} with either mobile platform
             </Typography>
-            <Button variant="outlined" className={classes.learnButton}>
+            <Button
+              component={Link}
+              to="/mobile-apps"
+              variant="outlined"
+              className={classes.learnButton}
+            >
               <span style={{ marginRight: 10 }}>Learn More</span>
               <ButtonArrow
                 width={10}
@@ -273,7 +294,12 @@ const LandingPage = () => {
             <Typography variant="subtitle1">
               Optimized for Search Engines, built for speed
             </Typography>
-            <Button variant="outlined" className={classes.learnButton}>
+            <Button
+              component={Link}
+              to="/websites"
+              variant="outlined"
+              className={classes.learnButton}
+            >
               <span style={{ marginRight: 10 }}>Learn More</span>
               <ButtonArrow
                 width={10}
@@ -317,6 +343,8 @@ const LandingPage = () => {
                     recipe for revolution.
                   </Typography>
                   <Button
+                    component={Link}
+                    to="/revolution"
                     variant="outlined"
                     className={classes.learnButtonHero}
                   >
@@ -359,6 +387,8 @@ const LandingPage = () => {
                 <Typography variant="subtitle2">Let's get personal.</Typography>
                 <Grid item>
                   <Button
+                    component={Link}
+                    to="/about"
                     variant="outlined"
                     style={{ color: 'white', borderColor: 'white' }}
                     className={classes.learnButton}
@@ -389,6 +419,8 @@ const LandingPage = () => {
                 </Typography>
                 <Grid item>
                   <Button
+                    component={Link}
+                    to="/contact"
                     variant="outlined"
                     style={{ color: 'white', borderColor: 'white' }}
                     className={classes.learnButton}
