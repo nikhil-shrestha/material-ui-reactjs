@@ -121,14 +121,14 @@ function Header(props) {
   const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
   const matches = useMediaQuery(theme.breakpoints.down('md'));
 
+  const { value, selectedIndex } = props;
+
   const [openDrawer, setOpenDrawer] = useState(false);
-  const [value, setValue] = useState(0);
   const [anchorEl, setAnchorEl] = useState(null);
   const [openMenu, setOpenMenu] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const handleChange = (e, value) => {
-    setValue(value);
+    props.setValue(value);
   };
 
   const handleClick = e => {
@@ -139,7 +139,7 @@ function Header(props) {
   const handleMenuItemClick = (e, i) => {
     setAnchorEl(null);
     setOpenMenu(false);
-    setSelectedIndex(i);
+    props.setSelectedIndex(i);
   };
 
   const handleClose = () => {
@@ -210,9 +210,9 @@ function Header(props) {
       switch (window.location.pathname) {
         case `${route.link}`:
           if (value !== route.activeIndex) {
-            setValue(route.activeIndex);
+            props.setValue(route.activeIndex);
             if (route.selectedIndex && route.selectedIndex !== selectedIndex) {
-              setSelectedIndex(route.selectedIndex);
+              props.setSelectedIndex(route.selectedIndex);
             }
           }
           break;
@@ -221,7 +221,7 @@ function Header(props) {
           break;
       }
     });
-  }, [value, menuOptions, routes, selectedIndex]);
+  }, [value, menuOptions, selectedIndex, routes, props]);
 
   const tabs = (
     <>
@@ -265,7 +265,7 @@ function Header(props) {
             key={`${option}${index}`}
             onClick={event => {
               handleMenuItemClick(event, index);
-              setValue(1);
+              props.setValue(1);
             }}
             component={Link}
             to={option.link}
@@ -308,7 +308,7 @@ function Header(props) {
               }}
               onClick={() => {
                 setOpenDrawer(false);
-                setValue(route.activeIndex);
+                props.setValue(route.activeIndex);
               }}
             >
               <ListItemText className={classes.drawerItem} disableTypography>
@@ -329,7 +329,7 @@ function Header(props) {
             }}
             onClick={() => {
               setOpenDrawer(false);
-              setValue(5);
+              props.setValue(5);
             }}
           >
             <ListItemText className={classes.drawerItem} disableTypography>
@@ -357,7 +357,7 @@ function Header(props) {
               component={Link}
               to="/"
               disableRipple
-              onClick={() => setValue(0)}
+              onClick={() => props.setValue(0)}
               className={classes.logoContainer}
             >
               <img src={logo} className={classes.logo} alt="company logo" />
