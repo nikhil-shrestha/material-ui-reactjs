@@ -25,7 +25,7 @@ function App() {
             path="/"
             render={props => (
               <LandingPage
-                selectedIndex={selectedIndex}
+                setValue={setValue}
                 setSelectedIndex={setSelectedIndex}
                 {...props}
               />
@@ -56,10 +56,7 @@ function App() {
             component={() => <div>Estimates</div>}
           />
         </Switch>
-        <Footer
-          selectedIndex={selectedIndex}
-          setSelectedIndex={setSelectedIndex}
-        />
+        <Footer setValue={setValue} setSelectedIndex={setSelectedIndex} />
       </Router>
     </ThemeProvider>
   );

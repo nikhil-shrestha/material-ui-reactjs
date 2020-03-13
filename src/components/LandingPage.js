@@ -122,7 +122,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const LandingPage = () => {
+const LandingPage = props => {
   const classes = useStyles();
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
@@ -157,6 +157,7 @@ const LandingPage = () => {
                   to="/estimate"
                   className={classes.estimate}
                   variant="contained"
+                  onClick={() => props.setValue(5)}
                 >
                   Free Esitmate
                 </Button>
@@ -167,6 +168,7 @@ const LandingPage = () => {
                   to="/revolution"
                   variant="outlined"
                   className={classes.learnButtonHero}
+                  onClick={() => props.setValue(2)}
                 >
                   <span style={{ marginRight: 10 }}>Learn More</span>
                   <ButtonArrow
@@ -211,6 +213,10 @@ const LandingPage = () => {
               to="/custom-software"
               variant="outlined"
               className={classes.learnButton}
+              onClick={() => {
+                props.setValue(1);
+                props.setSelectedIndex(1);
+              }}
             >
               <span style={{ marginRight: 10 }}>Learn More</span>
               <ButtonArrow
@@ -255,6 +261,10 @@ const LandingPage = () => {
               to="/mobile-apps"
               variant="outlined"
               className={classes.learnButton}
+              onClick={() => {
+                props.setValue(1);
+                props.setSelectedIndex(2);
+              }}
             >
               <span style={{ marginRight: 10 }}>Learn More</span>
               <ButtonArrow
@@ -299,6 +309,10 @@ const LandingPage = () => {
               to="/websites"
               variant="outlined"
               className={classes.learnButton}
+              onClick={() => {
+                props.setValue(1);
+                props.setSelectedIndex(3);
+              }}
             >
               <span style={{ marginRight: 10 }}>Learn More</span>
               <ButtonArrow
@@ -324,6 +338,7 @@ const LandingPage = () => {
           style={{ height: '100em', marginTop: '12em' }}
           alignItems="center"
           justify="center"
+          className={classes.revolutionBackground}
         >
           <Card className={classes.revolutionCard}>
             <CardContent>
@@ -347,6 +362,7 @@ const LandingPage = () => {
                     to="/revolution"
                     variant="outlined"
                     className={classes.learnButtonHero}
+                    onClick={() => props.setValue(2)}
                   >
                     <span style={{ marginRight: 10 }}>Learn More</span>
                     <ButtonArrow
@@ -359,28 +375,34 @@ const LandingPage = () => {
               </Grid>
             </CardContent>
           </Card>
-          <div className={classes.revolutionBackground} />
         </Grid>
       </Grid>
       <Grid item>
         {/*----- Information Block -----*/}
-        <Grid container style={{ height: '80em' }} alignItems="center">
+        <Grid
+          container
+          style={{ height: '80em' }}
+          alignItems="center"
+          className={classes.infoBackground}
+        >
           <Grid
             item
             container
             style={{
-              position: 'absolute',
               textAlign: matchesXS ? 'center' : 'inherit'
             }}
             direction={matchesXS ? 'column' : 'row'}
-            spacing={matchesXS ? 10 : 0}
           >
             <Grid
               item
               sm
               style={{ marginLeft: matchesXS ? 0 : matchesSM ? '2em' : '5em' }}
             >
-              <Grid container direction="column">
+              <Grid
+                container
+                style={{ marginBottom: matchesXS ? '10em' : 0 }}
+                direction="column"
+              >
                 <Typography variant="h2" style={{ color: 'white' }}>
                   About Us
                 </Typography>
@@ -392,6 +414,7 @@ const LandingPage = () => {
                     variant="outlined"
                     style={{ color: 'white', borderColor: 'white' }}
                     className={classes.learnButton}
+                    onClick={() => props.setValue(3)}
                   >
                     <span style={{ marginRight: 10 }}>Learn More</span>
                     <ButtonArrow width={10} height={10} fill="white" />
@@ -424,6 +447,7 @@ const LandingPage = () => {
                     variant="outlined"
                     style={{ color: 'white', borderColor: 'white' }}
                     className={classes.learnButton}
+                    onClick={() => props.setValue(4)}
                   >
                     <span style={{ marginRight: 10 }}>Learn More</span>
                     <ButtonArrow width={10} height={10} fill="white" />
@@ -432,13 +456,11 @@ const LandingPage = () => {
               </Grid>
             </Grid>
           </Grid>
-
-          <div className={classes.infoBackground} />
         </Grid>
       </Grid>
       <Grid item>
         {/*----- Call To Action -----*/}
-        <CallToAction />
+        <CallToAction setValue={props.setValue} />
       </Grid>
     </Grid>
   );
