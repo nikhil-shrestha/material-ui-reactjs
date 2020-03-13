@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
     }
   },
   serviceContainer: {
-    marginTop: '12em',
+    marginTop: '10em',
     [theme.breakpoints.down('sm')]: {
       padding: 25
     }
@@ -50,17 +50,34 @@ const Services = props => {
 
   return (
     <Grid container direction="column">
+      <Grid
+        item
+        style={{
+          marginLeft: matchesSM ? 0 : '5em',
+          marginTop: matchesSM ? '1em' : '2em'
+        }}
+      >
+        <Typography
+          variant="h2"
+          gutterBottom
+          align={matchesSM ? 'center' : undefined}
+        >
+          Services
+        </Typography>
+      </Grid>
       <Grid item>
         {/*----- iOS/Android Block -----*/}
         <Grid
           container
           justify={matchesSM ? 'center' : 'flex-end'}
           className={classes.serviceContainer}
+          style={{ marginTop: matchesSM ? '1em' : '5em' }}
         >
           <Grid
             item
             style={{
-              textAlign: matchesSM ? 'center' : undefined
+              textAlign: matchesSM ? 'center' : undefined,
+              width: matchesSM ? undefined : '35em'
             }}
           >
             <Typography variant="h4">iOS/Android App Development</Typography>
@@ -94,6 +111,7 @@ const Services = props => {
               src={mobileAppIcon}
               alt="mobile phone icon"
               className={classes.icon}
+              width="250em"
             />
           </Grid>
         </Grid>
@@ -153,11 +171,13 @@ const Services = props => {
           container
           justify={matchesSM ? 'center' : 'flex-end'}
           className={classes.serviceContainer}
+          style={{ marginBottom: '10em' }}
         >
           <Grid
             item
             style={{
-              textAlign: matchesSM ? 'center' : undefined
+              textAlign: matchesSM ? 'center' : undefined,
+              width: matchesSM ? undefined : '35em'
             }}
           >
             <Typography variant="h4">Website Development</Typography>
@@ -190,6 +210,7 @@ const Services = props => {
               src={websitesIcon}
               alt="website icon"
               className={classes.icon}
+              width="250em"
             />
           </Grid>
         </Grid>
