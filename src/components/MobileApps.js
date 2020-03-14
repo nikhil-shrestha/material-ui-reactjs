@@ -126,7 +126,7 @@ const MobileApps = props => {
             <IconButton
               style={{ backgroundColor: 'transparent' }}
               component={Link}
-              to="/website"
+              to="/websites"
               onClick={() => {
                 props.setValue(1);
                 props.setSelectedIndex(2);
