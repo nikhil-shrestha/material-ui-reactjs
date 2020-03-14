@@ -17,6 +17,8 @@ import iterate from '../assets/iterateIcon.svg';
 
 import technologyAnimationData from '../animations/technologyAnimation/data';
 
+import CallToAction from './ui/CallToAction';
+
 const useStyles = makeStyles(theme => ({
   rowContainer: {
     paddingLeft: '5em',
@@ -559,7 +561,7 @@ const Revolution = props => {
         </Grid>
 
         <Grid item lg style={{ alignSelf: 'center' }}>
-          <img src={review} alt="agnifying glass" />
+          <img src={review} alt="agnifying glass" width="100%" />
         </Grid>
       </Grid>
 
@@ -721,7 +723,7 @@ const Revolution = props => {
             src={launch}
             alt="rocket"
             width="100%"
-            style={{ maxWidth: 200 }}
+            style={{ maxWidth: 200, maxHeight: '35em' }}
           />
         </Grid>
       </Grid>
@@ -862,7 +864,9 @@ const Revolution = props => {
         </Grid>
       </Grid>
 
-      <Grid item></Grid>
+      <Grid item>
+        <CallToAction {...props} />
+      </Grid>
     </Grid>
   );
 };
