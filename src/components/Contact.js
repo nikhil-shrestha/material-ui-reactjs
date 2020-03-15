@@ -289,12 +289,19 @@ const Contact = props => {
       <Dialog
         style={{ zIndex: 1302 }}
         open={open}
+        fullScreen={matchesXS}
         onClose={() => setOpen(false)}
         PaperProps={{
           style: {
             paddingTop: matchesXS ? '1em' : '5em',
             paddingBottom: matchesXS ? '1em' : '5em',
-            paddingLeft: matchesXS ? 0 : '20em',
+            paddingLeft: matchesXS
+              ? 0
+              : matchesSM
+              ? '5em'
+              : matchesMD
+              ? '10em'
+              : '20em',
             paddingRight: matchesXS
               ? 0
               : matchesSM
@@ -346,7 +353,7 @@ const Contact = props => {
             </Grid>
           </Grid>
 
-          <Grid item style={{ maxWidth: '20em' }}>
+          <Grid item style={{ maxWidth: matchesXS ? '100%' : '20em' }}>
             <TextField
               InputProps={{
                 disableUnderline: true
