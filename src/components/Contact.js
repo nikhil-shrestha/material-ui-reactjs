@@ -6,6 +6,8 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
 
 import background from '../assets/background.jpg';
 import mobileBackground from '../assets/mobileBackground.jpg';
@@ -66,7 +68,7 @@ const useStyles = makeStyles(theme => ({
     width: 245,
     fontSize: '1rem',
     backgroundColor: theme.palette.common.orange,
-    '$:hover': {
+    '&:hover': {
       backgroundColor: theme.palette.secondary.light
     }
   }
@@ -87,6 +89,8 @@ const Contact = props => {
   const [phoneHelper, setPhoneHelper] = useState('');
 
   const [message, setMessage] = useState('');
+
+  const [open, setOpen] = useState(false);
 
   const onChange = event => {
     let valid;
@@ -255,14 +259,15 @@ const Contact = props => {
 
             <Grid item container justify="center" style={{ marginTop: '2em' }}>
               <Button
-                disabled={
-                  name.length === 0 ||
-                  message.length === 0 ||
-                  phoneHelper.length !== 0 ||
-                  emailHelper.length !== 0
-                }
+                // disabled={
+                //   name.length === 0 ||
+                //   message.length === 0 ||
+                //   phoneHelper.length !== 0 ||
+                //   emailHelper.length !== 0
+                // }
                 variant="contained"
                 className={classes.sendButton}
+                onClick={() => setOpen(true)}
               >
                 Send Message
                 <img
@@ -275,6 +280,84 @@ const Contact = props => {
           </Grid>
         </Grid>
       </Grid>
+
+      <Dialog open={open} onClose={() => setOpen(false)}>
+        <DialogContent>
+          <Grid container direction="column">
+            <Grid item>
+              <Typography variant="h4" gutterBottom>
+                Confirm Message
+              </Typography>
+            </Grid>
+
+            <Grid item style={{ marginBottom: '0.5em' }}>
+              <TextField
+                label="Name"
+                id="name"
+                fullWidth
+                value={name}
+                onChange={e => setName(e.target.value)}
+              />
+            </Grid>
+            <Grid item style={{ marginBottom: '0.5em' }}>
+              <TextField
+                label="Email"
+                id="email"
+                error={emailHelper.length !== 0}
+                helperText={emailHelper}
+                fullWidth
+                value={email}
+                onChange={onChange}
+              />
+            </Grid>
+            <Grid item style={{ marginBottom: '0.5em' }}>
+              <TextField
+                label="Phone"
+                id="phone"
+                error={phoneHelper.length !== 0}
+                helperText={phoneHelper}
+                fullWidth
+                value={phone}
+                onChange={onChange}
+              />
+            </Grid>
+          </Grid>
+
+          <Grid item style={{ maxWidth: '20em' }}>
+            <TextField
+              InputProps={{
+                disableUnderline: true
+              }}
+              value={message}
+              className={classes.message}
+              multiline
+              fullWidth
+              rows={10}
+              id="message"
+              onChange={e => setMessage(e.target.value)}
+            />
+          </Grid>
+
+          <Grid item container>
+            <Grid item>
+              <Button color="primary" onClick={() => setOpen(false)}>
+                Cancel
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button variant="contained" className={classes.sendButton}>
+                Send Message
+                <img
+                  src={airplane}
+                  alt="paper airplane"
+                  style={{ marginLeft: '1rem' }}
+                />
+              </Button>
+            </Grid>
+          </Grid>
+        </DialogContent>
+      </Dialog>
+
       <Grid
         item
         container
