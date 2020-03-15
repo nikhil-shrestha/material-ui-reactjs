@@ -79,10 +79,47 @@ const Contact = props => {
   const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
 
   const [name, setName] = useState('');
+
   const [email, setEmail] = useState('');
+  const [emailHelper, setEmailHelper] = useState('');
+
   const [phone, setPhone] = useState('');
+  const [phoneHelper, setPhoneHelper] = useState('');
+
   const [message, setMessage] = useState('');
 
+  const onChange = event => {
+    let valid;
+
+    switch (event.target.id) {
+      case 'email':
+        setEmail(event.target.value);
+        valid = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(
+          event.target.value
+        );
+        if (!valid) {
+          setEmailHelper('Invalid EMail');
+        } else {
+          setEmailHelper('');
+        }
+        break;
+
+      case 'phone':
+        setPhone(event.target.value);
+        valid = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(
+          event.target.value
+        );
+        if (!valid) {
+          setPhoneHelper('Invalid phone');
+        } else {
+          setPhoneHelper('');
+        }
+        break;
+
+      default:
+        break;
+    }
+  };
   return (
     <Grid container>
       <Grid
@@ -129,7 +166,12 @@ const Contact = props => {
                   variant="body1"
                   style={{ color: theme.palette.common.blue, fontSize: '1rem' }}
                 >
-                  (555) 555-5555
+                  <a
+                    href="tel:5555555555"
+                    style={{ textDecoration: 'none', color: 'inherit' }}
+                  >
+                    (555) 555-5555
+                  </a>
                 </Typography>
               </Grid>
             </Grid>
@@ -147,7 +189,12 @@ const Contact = props => {
                   variant="body1"
                   style={{ color: theme.palette.common.blue, fontSize: '1rem' }}
                 >
-                  john.doe@gmail.com
+                  <a
+                    href="mailto:john.doe@gmail.com"
+                    style={{ textDecoration: 'none', color: 'inherit' }}
+                  >
+                    john.doe@gmail.com
+                  </a>
                 </Typography>
               </Grid>
             </Grid>
@@ -171,18 +218,22 @@ const Contact = props => {
                 <TextField
                   label="Email"
                   id="email"
+                  error={emailHelper.length !== 0}
+                  helperText={emailHelper}
                   fullWidth
                   value={email}
-                  onChange={e => setEmail(e.target.value)}
+                  onChange={onChange}
                 />
               </Grid>
               <Grid item style={{ marginBottom: '0.5em' }}>
                 <TextField
                   label="Phone"
                   id="phone"
+                  error={phoneHelper.length !== 0}
+                  helperText={phoneHelper}
                   fullWidth
                   value={phone}
-                  onChange={e => setPhone(e.target.value)}
+                  onChange={onChange}
                 />
               </Grid>
             </Grid>
@@ -203,7 +254,16 @@ const Contact = props => {
             </Grid>
 
             <Grid item container justify="center" style={{ marginTop: '2em' }}>
-              <Button variant="contained" className={classes.sendButton}>
+              <Button
+                disabled={
+                  name.length === 0 ||
+                  message.length === 0 ||
+                  phoneHelper.length !== 0 ||
+                  emailHelper.length !== 0
+                }
+                variant="contained"
+                className={classes.sendButton}
+              >
                 Send Message
                 <img
                   src={airplane}
